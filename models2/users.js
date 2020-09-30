@@ -5,10 +5,14 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class users extends Model {
     static associate(models) {
-      // users.hasMany(models.user_roles, {
-      // //   as: 'user_roles',
-      // //   foreignKey: 'id'
-      // });
+      user_roles.belongsToMany(models.users, {
+        as: 'products',
+        foreignKey: 'user_id'
+      });
+      user_roles.belongsToMany(models.roles, {
+        as: 'roles',
+        foreignKey: 'products_id'
+      });
     }
   };
   users.init({
