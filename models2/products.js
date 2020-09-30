@@ -5,10 +5,14 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class products extends Model {
     static associate(models) {
-    //   users.hasMany(models.user_roles, {
-    //     as: 'user_roles',
-    //     foreignKey: 'id'
-    //   });
+      products.belongsToMany(models.product_status_id, {
+        as: 'product_categories',
+        foreignKey: 'category_id'
+      });
+      products.belongsToMany(models.product_status_id, {
+        as: 'product_categories',
+        foreignKey: 'category_id'
+      });
     }
   };
   products.init({

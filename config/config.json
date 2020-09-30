@@ -2,7 +2,7 @@
   "development": {
     "username": "postgres",
     "password": "pao940816ap",
-    "database": "ecommerse",
+    "database": "ecommersenode",
     "host": "127.0.0.1", 
     "dialect": "postgres"
   },
