@@ -3,16 +3,10 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class user_roles extends Model {
+  class UserRoles extends Model {
     static associate(models) {
-      user_roles.belongsToMany(models.users, {
-        as: 'users',
-        foreignKey: 'user_id'
-      });
-      user_roles.belongsToMany(models.roles, {
-        as: 'roles',
-        foreignKey: 'role_id'
-      });
+      UserRoles.belongsTo(models.Users, {foreignKey: 'user_id', as: 'users'});
+      UserRoles.belongsTo(models.Roles, {foreignKey: 'role_id', as: 'roles'});
     }
   };
   user_roles.init({
@@ -20,7 +14,9 @@ module.exports = (sequelize, DataTypes) => {
     role_id: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'user_roles',
+    modelName: 'UserRoles',
+    tableName: 'user_roles',
+    underscored: true
   });
   return user_roles;
 };

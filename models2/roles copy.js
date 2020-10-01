@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       })
     }
   };
-  Roles.init({
+  roles.init({
     name: DataTypes.STRING
   }, {
     sequelize,
@@ -20,5 +20,5 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'roles',
     underscored: true
   });
-  return Roles;
+  return roles;
 };
