@@ -4,26 +4,24 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class cc_transactions extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
     static associate(models) {
-    //   users.hasMany(models.user_roles, {
-    //     as: 'user_roles',
-    //     foreignKey: 'id'
-    //   });
+      // define association here
     }
   };
   cc_transactions.init({
     code: DataTypes.STRING,
-    order_id: DataTypes.NUMBER,
+    order_id: DataTypes.INTEGER,
     transdate: DataTypes.DATE,
-    processor: DataTypes.STRING,
     processor_trans_id: DataTypes.STRING,
-    discount_price: DataTypes.STRING,
-    amount: DataTypes.NUMBER,
-    cc_type: DataTypes.STRING,
+    amount: DataTypes.INTEGER,
     cc_num: DataTypes.STRING,
-    response: DataTypes.STRING,
-    inserted_at: DataTypes.DATE,
-    updated_at: DataTypes.DATE,
+    cc_type: DataTypes.STRING,
+    response: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'cc_transactions',
