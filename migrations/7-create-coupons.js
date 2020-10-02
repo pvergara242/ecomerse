@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('coupons', {
+    await queryInterface.createTable('Coupons', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -12,13 +12,13 @@ module.exports = {
         type: Sequelize.STRING
       },
       description: {
-        type: Sequelize.TEXT
+        type: Sequelize.STRING
       },
       active: {
         type: Sequelize.BOOLEAN
       },
       value: {
-        type: Sequelize.INTEGER
+        type: Sequelize.NUMERIC
       },
       multiple: {
         type: Sequelize.BOOLEAN
@@ -40,6 +40,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('coupons');
+    await queryInterface.dropTable('Coupons');
   }
 };
