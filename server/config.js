@@ -12,9 +12,12 @@ module.exports = (app) => {
   
     // Static files
     app.use("/public", express.static(path.join(__dirname, "../public")));
+
   
     // Routes
-  
+    routes(app);
     return app;
+
+  // Error router
   };
   
