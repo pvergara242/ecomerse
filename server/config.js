@@ -11,10 +11,9 @@ module.exports = (app) => {
   // Static files
   app.use("/public", express.static(path.join(__dirname, "../public")));
 
-  // Routes
+  // Routes from /routes index
   routes(app);
   return app;
 
-  // Error router
+  // Error router pondding
 };
-
