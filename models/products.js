@@ -6,11 +6,11 @@ module.exports = (sequelize, DataTypes) => {
   class products extends Model {
     static associate(models) {
       products.belongsToMany(models.products, {
-        through: 'products_categories',
-        as: 'products_categories',
+        through: 'product_categories',
+        as: 'categories',
         foreignKey: 'id'
       });
-      products.hasMany(models.product_status, {
+      products.hasMany(models.product_statuses, {
         as: 'products_statuses',
         foreignKey: 'id'
       });
