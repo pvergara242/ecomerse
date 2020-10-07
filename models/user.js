@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       })
     }
   };
-  User.init({
+  Users.init({
     first_name: DataTypes.STRING,
     last_name: DataTypes.STRING,
     email: DataTypes.STRING,
@@ -25,5 +25,5 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'users',
     underscored: true
   });
-  return User;
+  return Users;
 };

@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
-  Sales_Orders.init(
+  sales_orders.init(
     {
       order_date: DataTypes.DATE,
       total: DataTypes.NUMERIC,
