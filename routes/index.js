@@ -10,7 +10,14 @@ const bcrypt = require("bcryptjs");
 module.exports = (app) => {
   // home
   router.get("/", (req, res) => {
-    res.send("esta el la ruta inicial");
+    // res.send("esta el la ruta inicial");
+
+    let clave = process.env.JWT_SECRET || "sergio"
+    console.log(clave)
+    res.json({
+      message: "el clave secreta es:",
+      clave,
+    });
   });
 
   // user
