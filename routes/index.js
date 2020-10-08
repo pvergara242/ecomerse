@@ -62,7 +62,70 @@ app.post('/api/v1/users/login', async (request,response)=>{
   }
   
 })
-app.use(validateToken);
+// app.use(validateToken);
+
+app.get('/api/v1/users', async(request, response) => {
+  const users = await Users.findAll();
+  response.json({results: users})
+});
+
+app.get('/api/v1/users/:id', async(request, response) => {
+  const userId = request.params.id;
+  const users = await Users.findOne({
+      where: {
+          id: userId
+      }
+  });
+  response.json(users)
+});
+
+
+
+app.put('/api/v1/users/:id', async(request, response) => {
+  let userId = request.params.id;
+  let {
+      first_name,
+      last_name,
+      email,
+      active,
+      token,
+      password
+  } = request.body;
+  try {
+      const users = await Users.update({
+          first_name,
+          last_name,
+          email,
+          active,
+          token,
+          password,
+          updated_at: new Date()
+      }, {
+          returning: true,
+          where: {
+              id: userId
+          }
+      });
+      const user = users[1][0].dataValues;
+      response.json(user);
+  } catch (error) {
+      response
+          .status(400)
+          .json({message: "No se ha podido actualizar el registro"});
+  }
+});
+
+app.delete('/api/v1/users/:id', async(request, response) => {
+  let userId = request.params.id;
+  let user = await Users.destroy({
+      where: {
+          id: userId
+      }
+  });
+  response.json({message: "El registro se ha eliminado correctamente", user});
+});
+
+
 
   router.post("/api/v1/users/reset-password", (req, res) => {
     console.log(req);
