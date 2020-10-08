@@ -4,7 +4,7 @@ const routes = require("../routes/index");
 
 module.exports = (app) => {
   // Configuration
-  app.set("port", process.env.PORT || 3000);
+  app.set("port", process.env.PORT || 8000);
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
 
