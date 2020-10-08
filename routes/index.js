@@ -21,23 +21,18 @@ module.exports = (app) => {
       token,
       password,
     } = request.body;
-    console.log(first_name,
+
+    const user = await Users.create({
+      first_name,
       last_name,
       email,
       active,
       token,
-      password,)
-
-    // const user = await Users.create({
-    //   first_name,
-    //   last_name,
-    //   email,
-    //   active,
-    //   token,
-    //   password,
-    //   created_at: new Date(),
-    //   updated_at: new Date(),
-    // });
+      password,
+      created_at: new Date(),
+      updated_at: new Date(),
+    });
+    console.log(user);
     response.json({
       message: "Se ha agregado el usuario satisfactoriamente",
       user,

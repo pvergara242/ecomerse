@@ -11,7 +11,7 @@ module.exports = {
       user_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: "user",
+          model: "Users",
           key: "id",
         },
       },
@@ -36,4 +36,3 @@ module.exports = {
     await queryInterface.dropTable("user_roles");
   },
 };
-
