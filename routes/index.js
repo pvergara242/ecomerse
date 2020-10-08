@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const { Users } = require("../models/index.js");
-
 const { Model } = require("sequelize");
+const bcrypt = require("bcryptjs");
+
 
 module.exports = (app) => {
   // home
@@ -21,14 +22,14 @@ module.exports = (app) => {
       token,
       password,
     } = request.body;
-
+    const passwordEncrypted = bcrypt.hashSync(password, 10);
     const user = await Users.create({
       first_name,
       last_name,
       email,
       active,
       token,
-      password,
+      password:passwordEncrypted,
       created_at: new Date(),
       updated_at: new Date(),
     });
