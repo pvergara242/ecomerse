@@ -5,6 +5,8 @@ const validateToken = require("../middlewares/auth");
 const { Users } = require("../models/index.js");
 const { Model } = require("sequelize");
 const bcrypt = require("bcryptjs");
+const enviarCorreo = require('../middlewares/nodemailer');
+
 
 module.exports = (app) => {
   // user
@@ -54,6 +56,9 @@ module.exports = (app) => {
             secret,
             { expiresIn: "1h" }
           );
+          response.cookie('access_token', 'Bearer ' + token, {
+            expires: new Date(Date.now() + 8 * 3600000) // cookie will be removed after 8 hours
+        })
           response.json({
             message: "has iniciado sesion correctamente",
             token: token,
@@ -67,7 +72,48 @@ module.exports = (app) => {
     }
   });
 
-  //  enviar correo nodemeiler route
+  app.post('/api/v1/enviar-correo',(req,res)=>{
+    enviarCorreo();
+    res.json({
+      message: 'el correo se ha enviado satisfactoriamente'
+    })
+  })
+  
+  router.post('/api/v1/users/reset-password', async(req, res) => {
+    // console.log(req.body);
+    try {
+      const { email } = req.body;
+      let user = await Users.findOne({ where: { email: email } });
+      if (user) {
+        console.log(Users)
+      } else {
+        console.log('No se han encontrado nada')
+      }
+      const emailMaster = process.env.GOOGLE_ACCOUNT || 'pvergara242@gmail.com';
+    const objeto = {
+      from: emailMaster,
+      to: email,
+      subject: 'Restaurar contraseña',
+      text: `Su correo es:${email}` 
+  }
+      enviarCorreo(objeto);
+      res.json({
+        data: user.email,
+        message: 'el correo se ha enviado satisfactoriamente'
+    });
+  } catch (error) {
+    console.log(error)
+  }
+});
+
+// .POST → api/v1/users/update-password
+router.post('/api/v1/users/update-password', (req, res) => {
+  console.log(req);
+  res.json({
+    data: {},
+    message: 'something goes wrong on update pasword',
+  });
+});
 
   // ------------------------------------------------
   //Token validation middlewares
