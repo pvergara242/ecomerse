@@ -1,17 +1,20 @@
 
-POST http://localhost:3000/api/v1/users HTTP/1.1
+POST http://localhost:3000/api/v1/users
 content-type: application/json
+
 {
-	"first_name": "test2",
-	"last_name":"valencia",
-	"email": "shecho2@shecho.com",
+	"first_name": "admin2",
+	"last_name":"nister2",
+	"email": "admin2@admin.com",
 	"password":"1234",
 	"token": "",
 	"active": true
 }
 
+
+
 ###
-POST https://example.com/comments HTTP/1.1
+POST https://example.com/comments 
 content-type: application/json
 
 {
@@ -21,8 +24,9 @@ content-type: application/json
 
 ###
 
-POST http://localhost:3000/api/v1/users HTTP/1.1 
+POST http://localhost:3000/api/v1/users
 content-type: application/json
+
 {
 	"first_name": "test2",
 	"last_name":"valencia",
@@ -35,13 +39,14 @@ content-type: application/json
 
 
 ###
-GET  http://localhost:3000/
+GET http://localhost:3000/
 
 
 ###
 
 POST http://localhost:3000/api/v1/users
 content-type: application/json
+
 {
 	"first_name": "admin",
 	"last_name":"nisters",
@@ -58,6 +63,7 @@ content-type: application/json
 
 ###
 POST http://localhost:3000/api/v1/users/login 
+
 {
 "email": "admin@admin.com",
 	"password":"1234"
