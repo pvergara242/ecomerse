@@ -7,23 +7,19 @@ const { Model } = require("sequelize");
 const bcrypt = require("bcryptjs");
 const enviarCorreo = require('../middlewares/nodemailer');
 
+// requiereroutresa
+const usersRouter= require('../routes/usersRoutes')
+
+
 
 module.exports = (app) => {
-  // user
- 
-
- 
-  app.post('/api/v1/enviar-correo',(req,res)=>{
-    enviarCorreo();
-    res.json({
-      message: 'el correo se ha enviado satisfactoriamente'
-    })
-  })
-  
- 
-
+  // app.post('/api/v1/enviar-correo',(req,res)=>{
+  //   enviarCorreo();
+  //   res.json({
+  //     message: 'el correo se ha enviado satisfactoriamente'
+  //   })
+  // })
   // ------------------------------------------------
- 
   // home
   app.get("/", (req, res) => {
     // res.send("esta el la ruta inicial");
@@ -35,10 +31,8 @@ module.exports = (app) => {
       clave,
     });
   });
-
  //Token validation middlewares
  app.use(validateToken);
-
   
   // router.get("/timeout", home.error504);
   // router.get("*", home.error404);
