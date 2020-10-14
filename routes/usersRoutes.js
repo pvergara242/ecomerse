@@ -1,6 +1,5 @@
 
 const express = require(express);
-const {} = require('../')
 const router = express.router();
 
 router.post('/api/v1/users/login', login);
