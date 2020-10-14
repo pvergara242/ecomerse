@@ -1,7 +1,9 @@
 const express = require(express);
 const router = express.router();
+const { Users } = require("../models/index.js");
+const bcrypt = require("bcryptjs");
 
-
+// const { Model } = require("sequelize");
 
 // router.post('/api/v1/users/login', login);
 // router.post('/api/v1/users/update-password', updatePassword);

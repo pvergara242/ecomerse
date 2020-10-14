@@ -12,6 +12,7 @@ module.exports = (app) => {
   // user
  
 
+ 
   app.post('/api/v1/enviar-correo',(req,res)=>{
     enviarCorreo();
     res.json({
@@ -22,11 +23,9 @@ module.exports = (app) => {
  
 
   // ------------------------------------------------
-  //Token validation middlewares
-  app.use(validateToken);
-
+ 
   // home
-  router.get("/", (req, res) => {
+  app.get("/", (req, res) => {
     // res.send("esta el la ruta inicial");
 
     let clave = process.env.JWT_SECRET || "sergio";
@@ -36,6 +35,9 @@ module.exports = (app) => {
       clave,
     });
   });
+
+ //Token validation middlewares
+ app.use(validateToken);
 
   
   // router.get("/timeout", home.error504);
