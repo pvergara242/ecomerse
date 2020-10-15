@@ -1,8 +1,12 @@
-import express from 'express'
-// const express = require("express");
+import {Router} from 'express'
 import validateToken  from "../middlewares/auth";
-import bcrypt from 'bcryptjs'
-const router = express.Router();
+
+
+// const express = require("express");
+// import bcrypt from 'bcryptjs'
+
+
+const router = Router();
 
 // const validateToken = require("../middlewares/auth");
 // const jwt = require("jsonwebtoken");

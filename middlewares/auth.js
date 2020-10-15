@@ -1,4 +1,4 @@
-const jwt = require("jsonwebtoken");
+import jwt from 'jsonwebtoken';
 
 const validateToken = (request, response, next) => {
   //Middleware para validar el token del usuario
@@ -22,4 +22,5 @@ const validateToken = (request, response, next) => {
   }
 };
 
-module.exports = validateToken;
+export default  validateToken
+// module.exports = validateToken;
