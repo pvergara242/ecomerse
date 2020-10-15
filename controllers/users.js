@@ -60,6 +60,7 @@ ctrl.login = async (request, response) => {
 };
 // update user
 ctrl.update = (request, response) => {
+  console.log(request);
   res.json({
     data: {},
     message: "this si the update user controller",
@@ -73,7 +74,7 @@ ctrl.reset = async (request, response) => {
     const { email } = req.body;
     let user = await Users.findOne({ where: { email: email } });
     if (user) {
-      console.log(Users);
+      console.log(request);
     } else {
       console.log("No se han encontrado nada");
     }
@@ -95,6 +96,7 @@ ctrl.reset = async (request, response) => {
 };
 // update password
 ctrl.update = (request, response) => {
+  console.log(request);
   res.json({
     data: {},
     message: "something goes wrong on update pasword",
@@ -104,14 +106,14 @@ ctrl.update = (request, response) => {
 // logout
 ctrl.logout = (request, response) => {
   res.json({
-    data: {},
+    data: { request },
     message: "you have logout the session",
   });
 };
 
 // reset pasword
 ctrl.reset = (request, response) => {
-  console.log(req);
+  console.log(request);
   res.json({
     data: {},
     message: "something goes wrong in password",

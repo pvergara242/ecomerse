@@ -9,7 +9,7 @@ module.exports = (app) => {
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
 
-  app.use(morgan(dev));
+  app.use(morgan("dev"));
   // Static files
   app.use("/public", express.static(path.join(__dirname, "../public")));
 
