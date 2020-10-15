@@ -7,12 +7,15 @@ const { Model } = require("sequelize");
 const bcrypt = require("bcryptjs");
 const enviarCorreo = require("../middlewares/nodemailer");
 
+// controllers
+const user = require("../controllers/users");
+
 module.exports = (app) => {
   // user
   // Create user Register user
-  app.post("/api/v1/users", async (request, response) => {});
+  app.post("/api/v1/users", user.register);
   // login
-  app.post("/api/v1/users/login", async (request, response) => {});
+  app.post("/api/v1/users/login", user.login);
 
   app.post("/api/v1/enviar-correo", (req, res) => {
     enviarCorreo();
@@ -22,10 +25,10 @@ module.exports = (app) => {
   });
 
   // resetear user pasword
-  app.post("/api/v1/users/reset-password", async (req, res) => {});
+  app.post("/api/v1/users/reset-password", user.reset);
 
   // update-password
-  router.post("/api/v1/users/update-password", (req, res) => {});
+  router.post("/api/v1/users/update-password", user.update);
 
   // ------------------------------------------------
   //Token validation middlewares
@@ -44,19 +47,19 @@ module.exports = (app) => {
   });
 
   //  get one user
-  app.get("/api/v1/users/:id", async (request, response) => {});
+  app.get("/api/v1/users/:id", user.getUser);
 
   //  Editar  User
-  app.put("/api/v1/users/:id", async (request, response) => {});
+  app.put("/api/v1/users/:id", user.edit);
 
   // List all users
-  app.get("/api/v1/users", async (request, response) => {});
+  app.get("/api/v1/users", user.listAll);
 
   // ELiminar user
-  app.delete("/api/v1/users/:id", async (request, response) => {});
+  app.delete("/api/v1/users/:id", user.deleteUser);
 
   // reset pasword
-  router.post("/api/v1/users/reset-password", (req, res) => {});
+  router.post("/api/v1/users/reset-password", user.reset);
 
   // router.get("/timeout", home.error504);
   // router.get("*", home.error404);
