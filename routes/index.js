@@ -11,9 +11,11 @@ const router = Router();
 // const { Model } = require("sequelize");
 // const enviarCorreo = require("../middlewares/nodemailer");
 // const user = require("../controllers/users");
+
 // Middlewares
 import {Model} from "sequelize"
 import enviarCorreo from "../middlewares/nodemailer";
+
 
 // controllers
 import user from '../controllers/users';
