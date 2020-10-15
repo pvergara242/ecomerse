@@ -1,9 +1,14 @@
-const express = require("express");
+import express from 'express'
+// const express = require("express");
+import validateToken  from "../middlewares/auth";
+import bcrypt from 'bcryptjs'
 const router = express.Router();
-const validateToken = require("../middlewares/auth");
+
+// const validateToken = require("../middlewares/auth");
 // const jwt = require("jsonwebtoken");
 // const { Users } = require("../models/index.js");
 // const bcrypt = require("bcryptjs");
+
 const { Model } = require("sequelize");
 const enviarCorreo = require("../middlewares/nodemailer");
 

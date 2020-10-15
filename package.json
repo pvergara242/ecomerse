@@ -6,7 +6,7 @@
   "scripts": {
     "sequelize": "node_modules/.bin/sequelize init",
     "dev": "nodemon index.js",
-    "dev2": "nodemon src/index.js --exec babel-node",
+    "dev2": "nodemon index.js --exec babel-node",
     "build": "babel src --out-dir dist",
     "start": "node dist/index.js"
   },

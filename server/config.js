@@ -1,6 +1,11 @@
-const express = require("express");
-const morgan = require("morgan");
-const path = require("path");
+import express, { json } from 'express'
+import morgan from 'morgan'
+import path from 'path'
+// import routes from 'Routes'
+// const express = require("express");
+// const morgan = require("morgan");
+// const path = require("path");
+
 const routes = require("../routes/index");
 
 module.exports = (app) => {
