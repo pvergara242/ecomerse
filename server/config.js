@@ -1,4 +1,5 @@
 const express = require("express");
+const morgan = require("morgan");
 const path = require("path");
 const routes = require("../routes/index");
 
@@ -8,6 +9,7 @@ module.exports = (app) => {
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
 
+  app.use(morgan(dev));
   // Static files
   app.use("/public", express.static(path.join(__dirname, "../public")));
 
@@ -15,5 +17,5 @@ module.exports = (app) => {
   routes(app);
   return app;
 
-  // Error router pondding
+  // Error router
 };

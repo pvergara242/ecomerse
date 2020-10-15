@@ -1,4 +1,7 @@
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const { Users } = require("../models/index.js");
+const enviarCorreo = require("../middlewares/nodemailer");
 
 const resgister = async (request, response) => {
   // let secret = process.env.JWT_SECRET || "orlando"
@@ -109,88 +112,81 @@ const reset = (request, response) => {
 };
 
 // delete
-const deleteUser = async(request, response) => {
-    let decoded = jwt.verify(request.token, process.env.JWT_SECRET);
-    try {
-      let user = await Users.findOne({
-        where: {
-          id: userId,
-        },
-      });
-      if (decoded.id !== Number(userId) && user) {
-        await Users.update(
-          { active: false },
-          {
-            where: {
-              id: userId,
-            },
-          }
-        );
-        response.json({ message: "La cuenta ha sido desactivada" });
-      } else {
-        response
-          .status(400)
-          .json({ message: "Hubo un error al tratar de desactivar la cuenta" });
-      }
-    } catch (error) {
-      response
-        .status(400)
-        .json({ message: "Hubo un error al tratar de desactivar la cuenta" });
-    }
-};
-
-// list all ussers
-
-const listAll = (request,response) => {
-    const users = await Users.findAll();
-    response.json({ results: users });
-}
-
-// get one user
-const getUser = async(request,response) => {
-    const userId = request.params.id;
-    const users = await Users.findOne({
+const deleteUser = async (request, response) => {
+  let decoded = jwt.verify(request.token, process.env.JWT_SECRET);
+  try {
+    let user = await Users.findOne({
       where: {
         id: userId,
       },
     });
-    response.json(users);
-}
-
-//  Edit  User
-const edit = async(request,response) => {
-    let userId = request.params.id;
-    let {
-      first_name,
-      last_name,
-      email,
-      active,
-      token,
-      password,
-    } = request.body;
-    try {
-      const users = await Users.update(
+    if (decoded.id !== Number(userId) && user) {
+      await Users.update(
+        { active: false },
         {
-          first_name,
-          last_name,
-          email,
-          active,
-          token,
-          password,
-          updated_at: new Date(),
-        },
-        {
-          returning: true,
           where: {
             id: userId,
           },
         }
       );
-      const user = users[1][0].dataValues;
-      response.json(user);
-    } catch (error) {
+      response.json({ message: "La cuenta ha sido desactivada" });
+    } else {
       response
         .status(400)
-        .json({ message: "No se ha podido actualizar el registro" });
+        .json({ message: "Hubo un error al tratar de desactivar la cuenta" });
     }
-}
+  } catch (error) {
+    response
+      .status(400)
+      .json({ message: "Hubo un error al tratar de desactivar la cuenta" });
+  }
+};
+
+// list all ussers
+
+const listAll = async (request, response) => {
+  const users = await Users.findAll();
+  response.json({ results: users });
+};
+
+// get one user
+const getUser = async (request, response) => {
+  const userId = request.params.id;
+  const users = await Users.findOne({
+    where: {
+      id: userId,
+    },
+  });
+  response.json(users);
+};
+
+//  Edit  User
+const edit = async (request, response) => {
+  let userId = request.params.id;
+  let { first_name, last_name, email, active, token, password } = request.body;
+  try {
+    const users = await Users.update(
+      {
+        first_name,
+        last_name,
+        email,
+        active,
+        token,
+        password,
+        updated_at: new Date(),
+      },
+      {
+        returning: true,
+        where: {
+          id: userId,
+        },
+      }
+    );
+    const user = users[1][0].dataValues;
+    response.json(user);
+  } catch (error) {
+    response
+      .status(400)
+      .json({ message: "No se ha podido actualizar el registro" });
+  }
+};
