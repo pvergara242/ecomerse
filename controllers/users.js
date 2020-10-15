@@ -3,7 +3,9 @@ const jwt = require("jsonwebtoken");
 const { Users } = require("../models/index.js");
 const enviarCorreo = require("../middlewares/nodemailer");
 
-const resgister = async (request, response) => {
+const ctrl = {};
+
+ctrl.register = async (request, response) => {
   // let secret = process.env.JWT_SECRET || "orlando"
   // console.log(secret)
   let { first_name, last_name, email, active, token, password } = request.body;
@@ -25,7 +27,7 @@ const resgister = async (request, response) => {
   });
 };
 // Login user
-const login = async (request, response) => {
+ctrl.login = async (request, response) => {
   const { email, password } = request.body;
   let secret = process.env.JWT_SECRET || "orlando";
   let user = await Users.findOne({ where: { email: email } });
@@ -57,10 +59,15 @@ const login = async (request, response) => {
   }
 };
 // update user
-const update = (request, response) => {};
+ctrl.update = (request, response) => {
+  res.json({
+    data: {},
+    message: "this si the update user controller",
+  });
+};
 
 // send email
-const reset = async (request, response) => {
+ctrl.reset = async (request, response) => {
   // console.log(req.body);
   try {
     const { email } = req.body;
@@ -87,7 +94,7 @@ const reset = async (request, response) => {
   }
 };
 // update password
-const update = (request, response) => {
+ctrl.update = (request, response) => {
   res.json({
     data: {},
     message: "something goes wrong on update pasword",
@@ -95,7 +102,7 @@ const update = (request, response) => {
 };
 
 // logout
-const logout = (request, response) => {
+ctrl.logout = (request, response) => {
   res.json({
     data: {},
     message: "you have logout the session",
@@ -103,7 +110,7 @@ const logout = (request, response) => {
 };
 
 // reset pasword
-const reset = (request, response) => {
+ctrl.reset = (request, response) => {
   console.log(req);
   res.json({
     data: {},
@@ -112,7 +119,7 @@ const reset = (request, response) => {
 };
 
 // delete
-const deleteUser = async (request, response) => {
+ctrl.deleteUser = async (request, response) => {
   let decoded = jwt.verify(request.token, process.env.JWT_SECRET);
   try {
     let user = await Users.findOne({
@@ -144,13 +151,13 @@ const deleteUser = async (request, response) => {
 
 // list all ussers
 
-const listAll = async (request, response) => {
+ctrl.listAll = async (request, response) => {
   const users = await Users.findAll();
   response.json({ results: users });
 };
 
 // get one user
-const getUser = async (request, response) => {
+ctrl.getUser = async (request, response) => {
   const userId = request.params.id;
   const users = await Users.findOne({
     where: {
@@ -161,7 +168,7 @@ const getUser = async (request, response) => {
 };
 
 //  Edit  User
-const edit = async (request, response) => {
+ctrl.edit = async (request, response) => {
   let userId = request.params.id;
   let { first_name, last_name, email, active, token, password } = request.body;
   try {
@@ -190,3 +197,5 @@ const edit = async (request, response) => {
       .json({ message: "No se ha podido actualizar el registro" });
   }
 };
+
+module.exports = ctrl;
