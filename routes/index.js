@@ -12,16 +12,20 @@ const router = Router();
 // const jwt = require("jsonwebtoken");
 // const { Users } = require("../models/index.js");
 // const bcrypt = require("bcryptjs");
+// const { Model } = require("sequelize");
+// const enviarCorreo = require("../middlewares/nodemailer");
+// const user = require("../controllers/users");
 
-const { Model } = require("sequelize");
-const enviarCorreo = require("../middlewares/nodemailer");
+// Middlewares
+import {Model} from "sequelize"
+import enviarCorreo from "../middlewares/nodemailer";
 
 // controllers
-const user = require("../controllers/users");
+import user from '../controllers/users';
+
+
 
 module.exports = (app) => {
-  
-
 // home view
   router.get("/", (req, res) => {
     // res.send("esta el la ruta inicial");

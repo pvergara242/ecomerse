@@ -1,7 +1,6 @@
 
-const express = require(express);
-const {} = require('../')
-const router = express.router();
+import {Router} from 'express'
+const router = Router();
 
 router.post('/api/v1/users/login', login);
 router.post('/api/v1/users/update-password', updatePassword);

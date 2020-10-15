@@ -8,11 +8,11 @@ import path from 'path'
 
 const routes = require("../routes/index");
 
-module.exports = (app) => {
+const config = (app) => {
   // Configuration
   app.set("port", process.env.PORT || 8000);
   app.use(express.urlencoded({ extended: false }));
-  app.use(express.json());
+  app.use(json());
 
   app.use(morgan("dev"));
   // Static files
@@ -24,3 +24,4 @@ module.exports = (app) => {
 
   // Error router
 };
+export default config

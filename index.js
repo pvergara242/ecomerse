@@ -1,10 +1,7 @@
 import express from 'express'
-// import config from './server/config'
+import config from './server/config';
 
-const config = require("./server/config");
-
-
-// const express = require("express");
+// const config = require("./server/config");
 
 const app = config(express());
 
