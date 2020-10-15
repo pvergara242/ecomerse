@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const jwt = require("jsonwebtoken");
 const validateToken = require("../middlewares/auth");
-const { Users } = require("../models/index.js");
+// const jwt = require("jsonwebtoken");
+// const { Users } = require("../models/index.js");
+// const bcrypt = require("bcryptjs");
 const { Model } = require("sequelize");
-const bcrypt = require("bcryptjs");
 const enviarCorreo = require("../middlewares/nodemailer");
 
 // controllers

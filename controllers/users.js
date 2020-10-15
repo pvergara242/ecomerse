@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { Users } = require("../models/index.js");
+const { Model } = require("sequelize");
 const enviarCorreo = require("../middlewares/nodemailer");
 
 const ctrl = {};
