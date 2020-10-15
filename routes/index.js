@@ -12,27 +12,8 @@ const user = require("../controllers/users");
 
 module.exports = (app) => {
   
-  
-// user
 
-  // Create user Register user
-  app.post("/api/v1/users", user.register);
-  // login
-  app.post("/api/v1/users/login", user.login);
-
-  app.post("/api/v1/enviar-correo", (req, res) => {
-    enviarCorreo();
-    res.json({
-      message: "el correo se ha enviado satisfactoriamente",
-    });
-  });
-  // resetear user pasword
-  app.post("/api/v1/users/reset-password", user.reset);
-  // update-password
-  router.post("/api/v1/users/update-password", user.update);
-  //Token validation middlewares
-  app.use(validateToken);
-  // home view
+// home view
   router.get("/", (req, res) => {
     // res.send("esta el la ruta inicial");
     let clave = process.env.JWT_SECRET || "sergio";
@@ -42,6 +23,28 @@ module.exports = (app) => {
       clave,
     });
   });
+// send email test
+  app.post("/api/v1/enviar-correo", (req, res) => {
+    enviarCorreo();
+    res.json({
+      message: "el correo se ha enviado satisfactoriamente",
+    });
+  });
+// user
+
+  // Create user Register user
+  app.post("/api/v1/users", user.register);
+  // login
+  app.post("/api/v1/users/login", user.login);
+
+  // resetear user pasword
+  app.post("/api/v1/users/reset-password", user.reset);
+  // update-password
+  router.post("/api/v1/users/update-password", user.update);
+
+
+  //Token validation middlewares
+  app.use(validateToken);
   //  get one user
   app.get("/api/v1/users/:id", user.getUser);
   //  Editar  User
