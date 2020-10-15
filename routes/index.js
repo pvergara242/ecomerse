@@ -65,3 +65,18 @@ module.exports = (app) => {
   // router.get("*", home.error404);
   app.use(router);
 };
+
+
+// Todo:
+// agregar las dos realciones pendientes refrescar y migrar
+// Revisar que todas las realciones esten 
+// Crear los seeders
+// Enviar el token en correo para poder recupar contrasena
+// ENviar el correo aleatorio
+// Agregar la recuperacion de contrasena
+// verificar que no existan rutas repetidas
+// Completar el flijo completo del auth
+// Hacer el crud completo de User
+// Crear el controlador de auth
+// Desacoplar las rutas en 3 archivos
+// Paginacion
