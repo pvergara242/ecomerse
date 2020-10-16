@@ -1,11 +1,8 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-import { Users }  from '../models/index'
-import {Model} from "sequelize"
+import { Users } from "../models/index";
+import { Model } from "sequelize";
 import enviarCorreo from "../middlewares/nodemailer";
-
-
-
 
 const ctrl = {};
 
@@ -203,5 +200,5 @@ ctrl.edit = async (request, response) => {
       .json({ message: "No se ha podido actualizar el registro" });
   }
 };
-export default ctrl
+export default ctrl;
 // module.exports = ctrl;
