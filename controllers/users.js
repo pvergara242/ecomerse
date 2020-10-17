@@ -1,5 +1,7 @@
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+// const bcrypt = require("bcryptjs");
+// const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
 import { Users } from "../models/index";
 import { Model } from "sequelize";
 import enviarCorreo from "../middlewares/nodemailer";
@@ -159,6 +161,16 @@ ctrl.listAll = async (request, response) => {
   response.json({ results: users });
 };
 
+// get one user by id
+const buscarPorId = async (request, response) => {
+  const userId = request.params.id;
+  const user = await Users.findOne({
+    where: {
+      id: userId,
+    },
+  });
+  response.json(user);
+};
 // get one user
 ctrl.getUser = async (request, response) => {
   const userId = request.params.id;
@@ -199,6 +211,66 @@ ctrl.edit = async (request, response) => {
       .status(400)
       .json({ message: "No se ha podido actualizar el registro" });
   }
+};
+
+// paginacion
+ctrl.buscar = async (request, response) => {
+  const limite = request.query.limite;
+  const pagina = request.query.pagina;
+  //Offset se refiere al numero de registros que excluiremos de la consulta
+  const users = await Users.findAndCountAll({
+    offset: limite * (pagina - 1),
+    limit: limite,
+  });
+
+  const paginas = Math.ceil(users.count / limite);
+  let nextPage = 0; //Number(pagina) + 1
+  let prevPage = 0; //Number(pagina) - 1
+
+  //pagina 2 -> prevPage = 1 (prevPage)
+  // if(pagina > 1){
+  //     prevPage = pagina - 1;
+  // }else{
+  //     prevPage = null;
+  // }
+
+  //pagina 10 -> nextPage = 11 (nextPage)
+  // if(pagina < paginas){
+  //     nextPage = Number(pagina) + 1;
+  // }else{
+  //     nextPage = null;
+  // }
+
+  response.json({ nextPage, prevPage, paginas: paginas, results: users });
+};
+ctrl.buscar = async (request, response) => {
+  const limite = request.query.limite;
+  const pagina = request.query.pagina;
+  //Offset se refiere al numero de registros que excluiremos de la consulta
+  const users = await Users.findAndCountAll({
+    offset: limite * (pagina - 1),
+    limit: limite,
+  });
+
+  const paginas = Math.ceil(users.count / limite);
+  let nextPage = 0; //Number(pagina) + 1
+  let prevPage = 0; //Number(pagina) - 1
+
+  //pagina 2 -> prevPage = 1 (prevPage)
+  // if(pagina > 1){
+  //     prevPage = pagina - 1;
+  // }else{
+  //     prevPage = null;
+  // }
+
+  //pagina 10 -> nextPage = 11 (nextPage)
+  // if(pagina < paginas){
+  //     nextPage = Number(pagina) + 1;
+  // }else{
+  //     nextPage = null;
+  // }
+
+  response.json({ nextPage, prevPage, paginas: paginas, results: users });
 };
 export default ctrl;
 // module.exports = ctrl;
