@@ -3,19 +3,20 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Sessions extends Model {
+  class sessions extends Model {
     static associate(models) {
-      Sessions.hasMany(models.sales_orders, {
-    
+      sessions.hasMany(models.sales_orders, {
+        as: 'sales_orders',
         foreignKey: 'id'
       });
     }
   };
-  Sessions.init({
+  sessions.init({
     data: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'sessions',
   });
-  return Sessions;
+  return sessions;
 };
+
