@@ -1,5 +1,5 @@
-import {Router} from 'express'
-import validateToken  from "../middlewares/auth";
+import { Router } from "express";
+import validateToken from "../middlewares/auth";
 
 // const express = require("express");
 // import bcrypt from 'bcryptjs'
@@ -13,17 +13,14 @@ const router = Router();
 // const user = require("../controllers/users");
 
 // Middlewares
-import {Model} from "sequelize"
+import { Model } from "sequelize";
 import enviarCorreo from "../middlewares/nodemailer";
 
-
 // controllers
-import user from '../controllers/users';
-
-
+import user from "../controllers/users";
 
 module.exports = (app) => {
-// home view
+  // home view
   router.get("/", (req, res) => {
     // res.send("esta el la ruta inicial");
     let clave = process.env.JWT_SECRET || "sergio";
@@ -33,14 +30,14 @@ module.exports = (app) => {
       clave,
     });
   });
-// send email test
+  // send email test
   app.post("/api/v1/enviar-correo", (req, res) => {
     enviarCorreo();
     res.json({
       message: "el correo se ha enviado satisfactoriamente",
     });
   });
-// user
+  // user
   // Create user Register user
   app.post("/api/v1/users", user.register);
   // login
@@ -60,8 +57,22 @@ module.exports = (app) => {
   // ELiminar user
   app.delete("/api/v1/users/:id", user.deleteUser);
   // reset pasword
-  router.post("/api/v1/users/reset-password", user.reset);
+  // router.post("/api/v1/users/reset-password", user.reset);
   // router.get("/timeout", home.error504);
   // router.get("*", home.error404);
   app.use(router);
 };
+
+// Todo:
+// agregar las dos realciones pendientes de las tablas que existan refrescar y migrar
+// Revisar que todas las realciones esten OK
+// Crear los seeders
+// Enviar el token en correo para poder recupar contrasena
+// Enviar el pasword aleatorio en el correo
+// Agregar la recuperacion de contrasena agregando el link dinamico
+// verificar que no existan rutas repetidas
+// Completar el flijo completo del auth
+// Hacer el crud completo de User get user/:id /users /user/delete /user/update
+// Crear el controlador de auth
+// Desacoplar las rutas en 3 archivos
+// Paginacion
