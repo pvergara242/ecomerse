@@ -1,5 +1,10 @@
 import { Router } from "express";
 import validateToken from "../middlewares/auth";
+import Coupons from "../controllers/coupons";
+import ProductsController from "../controllers/Products";
+import categories from "../controllers/categories";
+import product_categories from "../controllers/Products_categories";
+
 
 // const express = require("express");
 // import bcrypt from 'bcryptjs'
@@ -61,63 +66,63 @@ module.exports = (app) => {
   // router.get("/timeout", home.error504);
   // router.get("*", home.error404);
   app.use(router);
-};
+};  
 
 // crud coupons
-crud.post("/api/v1/coupons", CouponsController);
-crud.get("/api/v1/coupons", CouponsController.all);
-crud.get("/api/v1/productos/:CouponsId", CouponsController.find);
-crud.put("/api/v1/productos/:CouponsId", CouponsController.validate('actualizarCoupons'), CouponsController.update);
-crud.delete("/api/v1/productos/:CouponsId", CouponsController.delete);
+crud.post("/api/v1/coupons", Coupons.register);
+crud.get("/api/v1/coupons", Coupons.listAll);
+crud.get("/api/v1/productos/:CouponsId", Coupons.getCoupon);
+crud.put("/api/v1/productos/:CouponsId", Coupons.update);
+crud.delete("/api/v1/productos/:CouponsId", Coupons.delete);
 
 
 // crud productos 
-crud.post("/api/v1/products", ProductsController);
-crud.get("/api/v1/Products", ProductsController.all);
+crud.post("/api/v1/products", ProductsController.register);
+crud.get("/api/v1/Products", ProductsController.listall);
 crud.get("/api/v1/productos/:ProductsId", ProductsController.find);
-crud.put("/api/v1/productos/:ProductsId", ProductsController.validate('actualizarCoupons'), CouponsController.update);
+crud.put("/api/v1/productos/:ProductsId", ProductsController.update);
 crud.delete("/api/v1/productos/:ProductsId", ProductsController.delete);
 
 // crud products-categories
-crud.post("/api/v1/Products-categories", ProductCategoriesController);
-crud.get("/api/v1/Products-categories", ProductsCategoriesController.all);
-crud.get("/api/v1/productos/:Products-categoriesId", ProductsCategoriesController.find);
-crud.put("/api/v1/productos/:Products-categoriesId", ProductsCategoriesController.validate('actualizarCoupons'), CouponsController.update);
-crud.delete("/api/v1/productos/:Products-categoriesId", ProductsCategoriesController.delete);
+crud.post("/api/v1/Products-categories", product_categories.register);
+crud.get("/api/v1/Products-categories", product_categories.listall);
+crud.get("/api/v1/productos/:Products-categoriesId", product_categories.find);
+crud.put("/api/v1/productos/:Products-categoriesId", product_categories.update);
+crud.delete("/api/v1/productos/:Products-categoriesId", product_categories.delete);
 
 //crud transactions
-crud.post("/api/v1/transactions", transactionsController);
-crud.get("/api/v1/transactions",transactionsController.all);
-crud.get("/api/v1/productos/:transactionsId", transactionsController.find);
-crud.put("/api/v1/productos/:transactionsId", transactionsController.validate('actualizarCoupons'), CouponsController.update);
-crud.delete("/api/v1/productos/:transactionsId", transactionsController.delete);
+crud.post("/api/v1/transactions", transactions.register);
+crud.get("/api/v1/transactions",transactions.listall);
+crud.get("/api/v1/productos/:transactionsId", transactions.find);
+crud.put("/api/v1/productos/:transactionsId", transactions.update);
+crud.delete("/api/v1/productos/:transactionsId", transactions.delete);
 
 // crud categories
-crud.post("/api/v1/categories", categoriesController);
-crud.get("/api/v1/categories",categoriesController.all);
-crud.get("/api/v1/productos/:categoriesId", categoriesController.find);
-crud.put("/api/v1/productos/:categoriesId",categoriesController.validate('actualizarCoupons'), CouponsController.update);
-crud.delete("/api/v1/productos/:categoriesId", categoriesController.delete);
+crud.post("/api/v1/categories", categories.register);
+crud.get("/api/v1/categories",categories.listall);
+crud.get("/api/v1/productos/:categoriesId", categories.find);
+crud.put("/api/v1/productos/:categoriesId",categories.update);
+crud.delete("/api/v1/productos/:categoriesId", categories.delete);
 
 // crud orderProducts
-crud.post("/api/v1/orderProducts", orderProductsController);
-crud.get("/api/v1/orderProducts",orderProductsController.all);
-crud.get("/api/v1/productos/:orderProductsId", orderProductsController.find);
-crud.put("/api/v1/productos/:orderProductsId",orderProductsController.validate('actualizarCoupons'), CouponsController.update);
-crud.delete("/api/v1/productos/:orderProductsId", orderProductsController.delete);
+crud.post("/api/v1/orderProducts", orderProducts.register);
+crud.get("/api/v1/orderProducts",orderProducts.listall);
+crud.get("/api/v1/productos/:orderProductsId", orderProducts.find);
+crud.put("/api/v1/productos/:orderProductsId",orderProducts.update);
+crud.delete("/api/v1/productos/:orderProductsId", orderProducts.delete);
 
 // crud tags
-crud.post("/api/v1/tags", tagsController);
-crud.get("/api/v1/tags",tagsController.all);
+crud.post("/api/v1/tags", tagsController.register);
+crud.get("/api/v1/tags",tagsController.listall);
 crud.get("/api/v1/productos/:tagsId", tagsController.find);
-crud.put("/api/v1/productos/:tagsId",tagsController.validate('actualizarCoupons'), CouponsController.update);
+crud.put("/api/v1/productos/:tagsId",tagsController.update);
 crud.delete("/api/v1/productos/:tagsId", tagsController.delete);
 
 // crud productsTags
-crud.post("/api/v1/productsTags", productsTagsController);
-crud.get("/api/v1/productsTags",productsTagsController.all);
+crud.post("/api/v1/productsTags", productsTagsController.register);
+crud.get("/api/v1/productsTags",productsTagsController.listall);
 crud.get("/api/v1/productos/:productsTagsId", productsTagsController.find);
-crud.put("/api/v1/productos/:productsTagsId",productsTagsController.validate('actualizarCoupons'), CouponsController.update);
+crud.put("/api/v1/productos/:productsTagsId",productsTagsController.update);
 crud.delete("/api/v1/productos/:productsTagsId", productsTagsController.delete);
 
 // crud 
