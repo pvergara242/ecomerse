@@ -1,10 +1,10 @@
 import { Products_categories } from "../models/index";
 import { Model } from "sequelize";
 
-const Products_categories = {};
+const ctrl = {};
 
 // crear categoria del producto
-Products_categories.register = async (request, response) => {
+ctrl.register = async (request, response) => {
   let { category_id, product_id } = request.body;
   const Products_categories = await Products_categories.create({
     category_id,
@@ -20,7 +20,7 @@ Products_categories.register = async (request, response) => {
 };
 
 // ontener un products_categories
-Products_categories.getProducts_categories = async (request, response) => {
+ctrl.getProducts_categories = async (request, response) => {
   const Products_categoriesId = request.params.Products_categoriesId;
   const Products_categories = await Products_categories.findOne({
     where: {
@@ -31,7 +31,7 @@ Products_categories.getProducts_categories = async (request, response) => {
 };
 
 // obtener Products_categories
-Products_categories.listAll = async (request, response) => {
+ctrl.listAll = async (request, response) => {
   const Products_categories = await Products_categories.findAll();
   response.json({ results: Products_categories });
 };
@@ -39,7 +39,7 @@ Products_categories.listAll = async (request, response) => {
 
 
 // modificar un Products_categories
-Products_categories.update= async(request, response) => {
+ctrl.update= async(request, response) => {
     const Products_categories = request.params.Products_categoriesId;
     const {
             category_id,
@@ -58,7 +58,7 @@ Products_categories.update= async(request, response) => {
                 id: Products_categoriesId
             }
         });
-        const Products_categoriesId = Products_categoriesId[1][0].dataValues;
+        Products_categoriesId = Products_categoriesId[1][0].dataValues;
         response.json(Products_categories);
     } catch (error) {
         response
@@ -70,7 +70,7 @@ Products_categories.update= async(request, response) => {
 
   
 // eliminar un Products_categories
-Products_categories.delete = async(request, response) => {
+ctrl.delete = async(request, response) => {
     let Products_categoriesId = request.params.Products_categoriesId;
     try {
         let Products_categories = await Products_categories.findOne({
@@ -100,4 +100,4 @@ Products_categories.delete = async(request, response) => {
 }
 
   
-  export default Products_categories;
+  export default ctrl;

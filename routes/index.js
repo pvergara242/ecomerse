@@ -25,7 +25,7 @@ import user from "../controllers/users";
 
 module.exports = (app) => {
   // home view
-  router.get("/", (req, res) => {
+  app.get("/", (req, res) => {
     console.log(res);
     // res.send("esta el la ruta inicial");
     let clave = process.env.JWT_SECRET || "sergio";
@@ -50,7 +50,7 @@ module.exports = (app) => {
   // resetear user pasword
   app.post("/api/v1/users/reset-password", user.reset);
   // update-password
-  router.post("/api/v1/users/update-password", user.update);
+  app.post("/api/v1/users/update-password", user.update);
   //Token validation middlewares
   app.use(validateToken);
   //  get one user
@@ -67,69 +67,60 @@ module.exports = (app) => {
   // router.get("*", home.error404);
 
   // crud coupons
-  crud.post("/api/v1/coupons", Coupons.register);
-  crud.get("/api/v1/coupons", Coupons.listAll);
-  crud.get("/api/v1/productos/:CouponsId", Coupons.getCoupon);
-  crud.put("/api/v1/productos/:CouponsId", Coupons.update);
-  crud.delete("/api/v1/productos/:CouponsId", Coupons.delete);
+  app.post("/api/v1/coupons", Coupons.register);
+  app.get("/api/v1/coupons", Coupons.getCoupon);
+  app.get("/api/v1/productos/:CouponsId", Coupons.listAll);
+  app.put("/api/v1/productos/:CouponsId", Coupons.update);
+  app.delete("/api/v1/productos/:CouponsId", Coupons.delete);
 
   // crud productos
-  crud.post("/api/v1/products", ProductsController.register);
-  crud.get("/api/v1/Products", ProductsController.listall);
-  crud.get("/api/v1/productos/:ProductsId", ProductsController.find);
-  crud.put("/api/v1/productos/:ProductsId", ProductsController.update);
-  crud.delete("/api/v1/productos/:ProductsId", ProductsController.delete);
+  app.post("/api/v1/products", ProductsController.create);
+  app.get("/api/v1/Products", ProductsController.getProducts);
+  app.get("/api/v1/productos/:ProductsId", ProductsController.listAll);
+  app.put("/api/v1/productos/:ProductsId", ProductsController.update);
+  app.delete("/api/v1/productos/:ProductsId", ProductsController.delete);
 
   // crud products-categories
-  crud.post("/api/v1/Products-categories", product_categories.register);
-  crud.get("/api/v1/Products-categories", product_categories.listall);
-  crud.get("/api/v1/productos/:Products-categoriesId", product_categories.find);
-  crud.put(
-    "/api/v1/productos/:Products-categoriesId",
-    product_categories.update
-  );
-  crud.delete(
-    "/api/v1/productos/:Products-categoriesId",
-    product_categories.delete
-  );
+  app.post("/api/v1/Products-categories", product_categories.register);
+  app.get("/api/v1/Products-categories", product_categories.getProducts_categories);
+  app.get("/api/v1/productos/:Products-categoriesId", product_categories.listAll);
+  app.put("/api/v1/productos/:Products-categoriesId",product_categories.update);
+  app.delete("/api/v1/productos/:Products-categoriesId",product_categories.delete);
 
   //crud transactions
-  crud.post("/api/v1/transactions", transactions.register);
-  crud.get("/api/v1/transactions", transactions.listall);
-  crud.get("/api/v1/productos/:transactionsId", transactions.find);
-  crud.put("/api/v1/productos/:transactionsId", transactions.update);
-  crud.delete("/api/v1/productos/:transactionsId", transactions.delete);
+  // app.post("/api/v1/transactions", transactions.register);
+  // app.get("/api/v1/transactions", transactions.listall);
+  // app.get("/api/v1/productos/:transactionsId", transactions.find);
+  // app.put("/api/v1/productos/:transactionsId", transactions.update);
+  // app.delete("/api/v1/productos/:transactionsId", transactions.delete);
 
   // crud categories
-  crud.post("/api/v1/categories", categories.register);
-  crud.get("/api/v1/categories", categories.listall);
-  crud.get("/api/v1/productos/:categoriesId", categories.find);
-  crud.put("/api/v1/productos/:categoriesId", categories.update);
-  crud.delete("/api/v1/productos/:categoriesId", categories.delete);
+  app.post("/api/v1/categories", categories.register);
+  app.get("/api/v1/categories", categories.getCategories);
+  app.get("/api/v1/productos/:categoriesId", categories.listAll);
+  app.put("/api/v1/productos/:categoriesId", categories.update);
+  app.delete("/api/v1/productos/:categoriesId", categories.delete);
 
   // crud orderProducts
-  crud.post("/api/v1/orderProducts", orderProducts.register);
-  crud.get("/api/v1/orderProducts", orderProducts.listall);
-  crud.get("/api/v1/productos/:orderProductsId", orderProducts.find);
-  crud.put("/api/v1/productos/:orderProductsId", orderProducts.update);
-  crud.delete("/api/v1/productos/:orderProductsId", orderProducts.delete);
+  // app.post("/api/v1/orderProducts", orderProducts.register);
+  // app.get("/api/v1/orderProducts", orderProducts.listall);
+  // app.get("/api/v1/productos/:orderProductsId", orderProducts.find);
+  // app.put("/api/v1/productos/:orderProductsId", orderProducts.update);
+  // app.delete("/api/v1/productos/:orderProductsId", orderProducts.delete);
 
   // crud tags
-  crud.post("/api/v1/tags", tagsController.register);
-  crud.get("/api/v1/tags", tagsController.listall);
-  crud.get("/api/v1/productos/:tagsId", tagsController.find);
-  crud.put("/api/v1/productos/:tagsId", tagsController.update);
-  crud.delete("/api/v1/productos/:tagsId", tagsController.delete);
+  // app.post("/api/v1/tags", tagsController.register);
+  // app.get("/api/v1/tags", tagsController.listall);
+  // app.get("/api/v1/productos/:tagsId", tagsController.find);
+  // app.put("/api/v1/productos/:tagsId", tagsController.update);
+  // app.delete("/api/v1/productos/:tagsId", tagsController.delete);
 
   // crud productsTags
-  crud.post("/api/v1/productsTags", productsTagsController.register);
-  crud.get("/api/v1/productsTags", productsTagsController.listall);
-  crud.get("/api/v1/productos/:productsTagsId", productsTagsController.find);
-  crud.put("/api/v1/productos/:productsTagsId", productsTagsController.update);
-  crud.delete(
-    "/api/v1/productos/:productsTagsId",
-    productsTagsController.delete
-  );
+  // app.post("/api/v1/productsTags", productsTagsController.register);
+  // app.get("/api/v1/productsTags", productsTagsController.listall);
+  // app.get("/api/v1/productos/:productsTagsId", productsTagsController.find);
+  // app.put("/api/v1/productos/:productsTagsId", productsTagsController.update);
+  // app.delete("/api/v1/productos/:productsTagsId",productsTagsController.delete);
 
   app.use(router);
 };

@@ -1,10 +1,10 @@
 import { Products } from "../models/index";
 import { Model } from "sequelize";
 
-const Products = {};
+const ctrl = {};
 
 // crear producto
-Products.create = async (request, response) => {
+ctrl.create = async (request, response) => {
   let {
     Sku,
     name,
@@ -33,8 +33,8 @@ Products.create = async (request, response) => {
   });
 };
 
-// ontener un producto
-Products.getProducts = async (request, response) => {
+// ontener un productov por id 
+ctrl.getProducts = async (request, response) => {
   const ProductsId = request.params.ProductsId;
   const Products = await Products.findOne({
     where: {
@@ -44,14 +44,14 @@ Products.getProducts = async (request, response) => {
   response.json(Products);
 };
 
-// leer cupones
-Products.listAll = async (request, response) => {
+// leer cupones listando todos 
+ctrl.listAll = async (request, response) => {
   const Products = await Products.findAll();
   response.json({ results: Products });
 };
 
 // modificar un cupon
-Products.update = async (request, response) => {
+ctrl.update = async (request, response) => {
   const Products = request.params.ProductsId;
   const {
     Sku,
@@ -76,7 +76,6 @@ Products.update = async (request, response) => {
         texable,
         created_at: new Date(),
         updated_at: new Date(),
-        updated_at: new Date(),
       },
       {
         returning: true,
@@ -85,8 +84,8 @@ Products.update = async (request, response) => {
         },
       }
     );
-    const ProductsId = ProductsId[1][0].dataValues;
-    response.json(Products);
+    ProductsId = ProductsId[1][0].dataValues;
+    response.json(ProductsId);
   } catch (error) {
     response
       .status(400)
@@ -95,7 +94,7 @@ Products.update = async (request, response) => {
 };
 
 // eliminar un cupon
-Products.delete = async (request, response) => {
+ctrl.delete = async (request, response) => {
   let ProductsId = request.params.ProductsId;
   try {
     let Products = await Products.findOne({
@@ -127,5 +126,5 @@ Products.delete = async (request, response) => {
   }
 };
 
-export default Products;
+export default ctrl;
 
