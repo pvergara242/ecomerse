@@ -5,7 +5,15 @@ const Products = {};
 
 // crear producto
 Products.create = async (request, response) => {
-  let { Sku, name, description, product_status_id, regular_price, quantity,texable } = request.body;
+  let {
+    Sku,
+    name,
+    description,
+    product_status_id,
+    regular_price,
+    quantity,
+    texable,
+  } = request.body;
   const Products = await Products.create({
     Sku,
     name,
@@ -42,12 +50,22 @@ Products.listAll = async (request, response) => {
   response.json({ results: Products });
 };
 
-
-
 // modificar un cupon
-Products.update= async(request, response) => {
-    const Products = request.params.ProductsId;
-    const {
+Products.update = async (request, response) => {
+  const Products = request.params.ProductsId;
+  const {
+    Sku,
+    name,
+    description,
+    product_status_id,
+    regular_price,
+    discount_price,
+    quantity,
+    texable,
+  } = request.body;
+  try {
+    const ProductsId = await ProductsId.update(
+      {
         Sku,
         name,
         description,
@@ -56,66 +74,58 @@ Products.update= async(request, response) => {
         discount_price,
         quantity,
         texable,
-    } = request.body;
-    try {
-        const ProductsId = await ProductsId.update({
-            Sku,
-            name,
-            description,
-            product_status_id,
-            regular_price,
-            discount_price,
-            quantity,
-            texable,
-            created_at: new Date(),
-            updated_at: new Date(),
-            updated_at: new Date()
-        }, {
-            returning: true,
-            where: {
-                id: ProductsId
-            }
-        });
-        const ProductsId = ProductsId[1][0].dataValues;
-        response.json(Products);
-    } catch (error) {
-        response
-            .status(400)
-            .json({message: "No se ha podido actualizar el producto"});
-    }
-}
+        created_at: new Date(),
+        updated_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        returning: true,
+        where: {
+          id: ProductsId,
+        },
+      }
+    );
+    const ProductsId = ProductsId[1][0].dataValues;
+    response.json(Products);
+  } catch (error) {
+    response
+      .status(400)
+      .json({ message: "No se ha podido actualizar el producto" });
+  }
+};
 
-
-  
 // eliminar un cupon
-Products.delete = async(request, response) => {
-    let ProductsId = request.params.ProductsId;
-    try {
-        let Products = await Products.findOne({
-            where: {
-                id: ProductsId
-            }
-        });
-        if (decoded.id !== Number(ProductsId) && Products) {
-            await Products.update({
-                active: false
-            }, {
-                where: {
-                    id: ProductsId
-                }
-            });
-            response.json({message: "el producto ha sido desactivado"});
-        } else {
-            response
-                .status(400)
-                .json({message: "Hubo un error al tratar de desactivar el producto"});
+Products.delete = async (request, response) => {
+  let ProductsId = request.params.ProductsId;
+  try {
+    let Products = await Products.findOne({
+      where: {
+        id: ProductsId,
+      },
+    });
+    if (decoded.id !== Number(ProductsId) && Products) {
+      await Products.update(
+        {
+          active: false,
+        },
+        {
+          where: {
+            id: ProductsId,
+          },
         }
-    } catch (error) {
-        response
-            .status(400)
-            .json({message: "Hubo un error al tratar de desactivar el producto"});
+      );
+      response.json({ message: "el producto ha sido desactivado" });
+    } else {
+      response
+        .status(400)
+        .json({ message: "Hubo un error al tratar de desactivar el producto" });
     }
-}
+  } catch (error) {
+    response
+      .status(400)
+      .json({ message: "Hubo un error al tratar de desactivar el producto" });
+  }
+};
 
-  
-  export default Products;
+export default Products;
+

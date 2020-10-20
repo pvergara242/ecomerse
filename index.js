@@ -1,5 +1,5 @@
-import express from 'express'
-import config from './server/config';
+import express from "express";
+import config from "./server/config";
 
 // const config = require("./server/config");
 
