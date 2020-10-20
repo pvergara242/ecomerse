@@ -17,11 +17,12 @@ import { Model } from "sequelize";
 import enviarCorreo from "../middlewares/nodemailer";
 
 // controllers
-import user from "../controllers/users";
+import user from '../controllers/users';
 
 module.exports = (app) => {
   // home view
   router.get("/", (req, res) => {
+    console.log(res);
     // res.send("esta el la ruta inicial");
     let clave = process.env.JWT_SECRET || "sergio";
     console.log(clave);
