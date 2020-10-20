@@ -23,7 +23,7 @@ module.exports = (app) => {
 // home view
   router.get("/", (req, res) => {
     console.log(res);
-    // res.send("esta el la ruta inicial");
+    res.send("esta el la ruta inicial");
     let clave = process.env.JWT_SECRET || "sergio";
     console.log(clave);
     res.json({
