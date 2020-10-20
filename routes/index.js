@@ -22,7 +22,11 @@ import { Model } from "sequelize";
 import enviarCorreo from "../middlewares/nodemailer";
 
 // controllers
+<<<<<<< HEAD
 import user from '../controllers/users';
+=======
+import user from "../controllers/users";
+>>>>>>> 6306210dd41012c0d9c2dc74c5944b784163c542
 
 module.exports = (app) => {
   // home view
@@ -119,6 +123,7 @@ crud.get("/api/v1/productos/:tagsId", tagsController.find);
 crud.put("/api/v1/productos/:tagsId",tagsController.update);
 crud.delete("/api/v1/productos/:tagsId", tagsController.delete);
 
+<<<<<<< HEAD
 // Todo:
 // agregar las dos realciones pendientes refrescar y migrar
 // Revisar que todas las realciones esten 
@@ -132,6 +137,8 @@ crud.delete("/api/v1/productos/:tagsId", tagsController.delete);
 // Crear el controlador de auth
 // Desacoplar las rutas en 3 archivos
 // Paginacion
+=======
+>>>>>>> 6306210dd41012c0d9c2dc74c5944b784163c542
 // crud productsTags
 crud.post("/api/v1/productsTags", productsTagsController.register);
 crud.get("/api/v1/productsTags",productsTagsController.listall);
@@ -139,7 +146,7 @@ crud.get("/api/v1/productos/:productsTagsId", productsTagsController.find);
 crud.put("/api/v1/productos/:productsTagsId",productsTagsController.update);
 crud.delete("/api/v1/productos/:productsTagsId", productsTagsController.delete);
 
-// crud 
+// crud
 // Todo:
 // agregar las dos realciones pendientes de las tablas que existan refrescar y migrar =>orlando
 // Revisar que todas las realciones esten OK =>orlando
@@ -151,7 +158,7 @@ crud.delete("/api/v1/productos/:productsTagsId", productsTagsController.delete);
 // Completar el flijo completo del auth =>todos para lo ultimo
 // Hacer el crud completo de User get user/:id /users /user/delete /user/update =>paola
 // Crear el controlador de auth =>paola
-// Desacoplar las rutas en 3 archivos => todos a lo ultimo 
+// Desacoplar las rutas en 3 archivos => todos a lo ultimo
 // Paginacion =>sergio
 // asegurar que todo este con ES6 =>sergio
 // variables de entorno=>orlando

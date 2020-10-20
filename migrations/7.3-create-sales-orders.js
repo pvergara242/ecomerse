@@ -24,7 +24,7 @@ module.exports = {
       session_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: "session",
+          model: "sessions",
           key: "id",
         },
       },
@@ -35,11 +35,11 @@ module.exports = {
           key: "id",
         },
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE,
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE,
       },
