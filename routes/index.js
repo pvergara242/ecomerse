@@ -16,15 +16,13 @@ const router = Router();
 import {Model} from "sequelize"
 import enviarCorreo from "../middlewares/nodemailer";
 
-
 // controllers
 import user from '../controllers/users';
-
-
 
 module.exports = (app) => {
 // home view
   router.get("/", (req, res) => {
+    console.log(res);
     // res.send("esta el la ruta inicial");
     let clave = process.env.JWT_SECRET || "sergio";
     console.log(clave);
@@ -65,7 +63,6 @@ module.exports = (app) => {
   // router.get("*", home.error404);
   app.use(router);
 };
-
 
 // Todo:
 // agregar las dos realciones pendientes refrescar y migrar

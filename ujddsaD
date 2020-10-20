@@ -1,0 +1,14 @@
+[33m33267f9[m[33m ([m[1;36mHEAD -> [m[1;32mjose_dev[m[33m, [m[1;31morigin/svalenciaES6[m[33m, [m[1;31morigin/jose_dev[m[33m, [m[1;32msvalenciaES6[m[33m)[m HEAD@{0}: pull --tags origin svalenciaES6: Fast-forward
+[33m929484b[m HEAD@{1}: checkout: moving from svalenciaES6 to jose_dev
+[33m33267f9[m[33m ([m[1;36mHEAD -> [m[1;32mjose_dev[m[33m, [m[1;31morigin/svalenciaES6[m[33m, [m[1;31morigin/jose_dev[m[33m, [m[1;32msvalenciaES6[m[33m)[m HEAD@{2}: checkout: moving from jose_dev to svalenciaES6
+[33m929484b[m HEAD@{3}: commit: creadas carpetas
+[33m4934d5b[m[33m ([m[1;31morigin/paola-vergara[m[33m, [m[1;31morigin/orlandog[m[33m, [m[1;31morigin/migraciones[m[33m, [m[1;32mmigraciones[m[33m)[m HEAD@{4}: pull --tags origin migraciones: Fast-forward
+[33m43caeb9[m[33m ([m[1;32msvalencia[m[33m)[m HEAD@{5}: checkout: moving from migraciones to jose_dev
+[33m4934d5b[m[33m ([m[1;31morigin/paola-vergara[m[33m, [m[1;31morigin/orlandog[m[33m, [m[1;31morigin/migraciones[m[33m, [m[1;32mmigraciones[m[33m)[m HEAD@{6}: commit: Ya se puede enviar el email al usuario
+[33meaf0470[m HEAD@{7}: checkout: moving from paola-vergara to migraciones
+[33m953c993[m[33m ([m[1;32mpaola-vergara[m[33m)[m HEAD@{8}: checkout: moving from svalencia to paola-vergara
+[33m43caeb9[m[33m ([m[1;32msvalencia[m[33m)[m HEAD@{9}: checkout: moving from master to svalencia
+[33m9557d74[m[33m ([m[1;32mmaster[m[33m)[m HEAD@{10}: checkout: moving from jose_dev to master
+[33m43caeb9[m[33m ([m[1;32msvalencia[m[33m)[m HEAD@{11}: pull --tags origin svalencia: Fast-forward
+[33m9557d74[m[33m ([m[1;32mmaster[m[33m)[m HEAD@{12}: checkout: moving from master to jose_dev
+[33m9557d74[m[33m ([m[1;32mmaster[m[33m)[m HEAD@{13}: clone: from https://github.com/pvergara242/ecomerse.git
