@@ -4,6 +4,10 @@ import Coupons from "../controllers/coupons";
 import ProductsController from "../controllers/Products";
 import categories from "../controllers/categories";
 import product_categories from "../controllers/Products_categories";
+import orderProducts from "../controllers/order_products";
+import tagsController from "../controllers/tags";
+import transactions from "../controllers/transaccion";
+import productsTags from "../controllers/ProductsTags";
 
 // const express = require("express");
 // import bcrypt from 'bcryptjs'
@@ -88,11 +92,11 @@ module.exports = (app) => {
   app.delete("/api/v1/productos/:Products-categoriesId",product_categories.delete);
 
   //crud transactions
-  // app.post("/api/v1/transactions", transactions.register);
-  // app.get("/api/v1/transactions", transactions.listall);
-  // app.get("/api/v1/productos/:transactionsId", transactions.find);
-  // app.put("/api/v1/productos/:transactionsId", transactions.update);
-  // app.delete("/api/v1/productos/:transactionsId", transactions.delete);
+  app.post("/api/v1/transactions", transactions.create);
+  app.get("/api/v1/transactions", transactions.getTransaccion);
+  app.get("/api/v1/productos/:transactionsId", transactions.listAll);
+  app.put("/api/v1/productos/:transactionsId", transactions.update);
+  app.delete("/api/v1/productos/:transactionsId", transactions.delete);
 
   // crud categories
   app.post("/api/v1/categories", categories.register);
@@ -102,25 +106,25 @@ module.exports = (app) => {
   app.delete("/api/v1/productos/:categoriesId", categories.delete);
 
   // crud orderProducts
-  // app.post("/api/v1/orderProducts", orderProducts.register);
-  // app.get("/api/v1/orderProducts", orderProducts.listall);
-  // app.get("/api/v1/productos/:orderProductsId", orderProducts.find);
-  // app.put("/api/v1/productos/:orderProductsId", orderProducts.update);
-  // app.delete("/api/v1/productos/:orderProductsId", orderProducts.delete);
+  app.post("/api/v1/orderProducts", orderProducts.register);
+  app.get("/api/v1/orderProducts", orderProducts.getorder_products);
+  app.get("/api/v1/productos/:orderProductsId", orderProducts.listAll);
+  app.put("/api/v1/productos/:orderProductsId", orderProducts.update);
+  app.delete("/api/v1/productos/:orderProductsId", orderProducts.delete);
 
   // crud tags
-  // app.post("/api/v1/tags", tagsController.register);
-  // app.get("/api/v1/tags", tagsController.listall);
-  // app.get("/api/v1/productos/:tagsId", tagsController.find);
-  // app.put("/api/v1/productos/:tagsId", tagsController.update);
-  // app.delete("/api/v1/productos/:tagsId", tagsController.delete);
+  app.post("/api/v1/tags", tagsController.register);
+  app.get("/api/v1/tags", tagsController.getTags);
+  app.get("/api/v1/productos/:tagsId", tagsController.listAll);
+  app.put("/api/v1/productos/:tagsId", tagsController.update);
+  app.delete("/api/v1/productos/:tagsId", tagsController.delete);
 
   // crud productsTags
-  // app.post("/api/v1/productsTags", productsTagsController.register);
-  // app.get("/api/v1/productsTags", productsTagsController.listall);
-  // app.get("/api/v1/productos/:productsTagsId", productsTagsController.find);
-  // app.put("/api/v1/productos/:productsTagsId", productsTagsController.update);
-  // app.delete("/api/v1/productos/:productsTagsId",productsTagsController.delete);
+  app.post("/api/v1/productsTags", productsTags.register);
+  app.get("/api/v1/productsTags", productsTags.getProductsTags);
+  app.get("/api/v1/productos/:productsTagsId", productsTags.listAll);
+  app.put("/api/v1/productos/:productsTagsId", productsTags.update);
+  app.delete("/api/v1/productos/:productsTagsId",productsTags.delete);
 
   app.use(router);
 };
