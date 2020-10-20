@@ -64,16 +64,76 @@ module.exports = (app) => {
   app.use(router);
 };
 
+// crud coupons
+crud.post("/api/v1/coupons", CouponsController);
+crud.get("/api/v1/coupons", CouponsController.all);
+crud.get("/api/v1/productos/:CouponsId", CouponsController.find);
+crud.put("/api/v1/productos/:CouponsId", CouponsController.validate('actualizarCoupons'), CouponsController.update);
+crud.delete("/api/v1/productos/:CouponsId", CouponsController.delete);
+
+
+// crud productos 
+crud.post("/api/v1/products", ProductsController);
+crud.get("/api/v1/Products", ProductsController.all);
+crud.get("/api/v1/productos/:ProductsId", ProductsController.find);
+crud.put("/api/v1/productos/:ProductsId", ProductsController.validate('actualizarCoupons'), CouponsController.update);
+crud.delete("/api/v1/productos/:ProductsId", ProductsController.delete);
+
+// crud products-categories
+crud.post("/api/v1/Products-categories", ProductCategoriesController);
+crud.get("/api/v1/Products-categories", ProductsCategoriesController.all);
+crud.get("/api/v1/productos/:Products-categoriesId", ProductsCategoriesController.find);
+crud.put("/api/v1/productos/:Products-categoriesId", ProductsCategoriesController.validate('actualizarCoupons'), CouponsController.update);
+crud.delete("/api/v1/productos/:Products-categoriesId", ProductsCategoriesController.delete);
+
+//crud transactions
+crud.post("/api/v1/transactions", transactionsController);
+crud.get("/api/v1/transactions",transactionsController.all);
+crud.get("/api/v1/productos/:transactionsId", transactionsController.find);
+crud.put("/api/v1/productos/:transactionsId", transactionsController.validate('actualizarCoupons'), CouponsController.update);
+crud.delete("/api/v1/productos/:transactionsId", transactionsController.delete);
+
+// crud categories
+crud.post("/api/v1/categories", categoriesController);
+crud.get("/api/v1/categories",categoriesController.all);
+crud.get("/api/v1/productos/:categoriesId", categoriesController.find);
+crud.put("/api/v1/productos/:categoriesId",categoriesController.validate('actualizarCoupons'), CouponsController.update);
+crud.delete("/api/v1/productos/:categoriesId", categoriesController.delete);
+
+// crud orderProducts
+crud.post("/api/v1/orderProducts", orderProductsController);
+crud.get("/api/v1/orderProducts",orderProductsController.all);
+crud.get("/api/v1/productos/:orderProductsId", orderProductsController.find);
+crud.put("/api/v1/productos/:orderProductsId",orderProductsController.validate('actualizarCoupons'), CouponsController.update);
+crud.delete("/api/v1/productos/:orderProductsId", orderProductsController.delete);
+
+// crud tags
+crud.post("/api/v1/tags", tagsController);
+crud.get("/api/v1/tags",tagsController.all);
+crud.get("/api/v1/productos/:tagsId", tagsController.find);
+crud.put("/api/v1/productos/:tagsId",tagsController.validate('actualizarCoupons'), CouponsController.update);
+crud.delete("/api/v1/productos/:tagsId", tagsController.delete);
+
+// crud productsTags
+crud.post("/api/v1/productsTags", productsTagsController);
+crud.get("/api/v1/productsTags",productsTagsController.all);
+crud.get("/api/v1/productos/:productsTagsId", productsTagsController.find);
+crud.put("/api/v1/productos/:productsTagsId",productsTagsController.validate('actualizarCoupons'), CouponsController.update);
+crud.delete("/api/v1/productos/:productsTagsId", productsTagsController.delete);
+
+// crud 
 // Todo:
-// agregar las dos realciones pendientes de las tablas que existan refrescar y migrar
-// Revisar que todas las realciones esten OK
-// Crear los seeders
-// Enviar el token en correo para poder recupar contrasena
-// Enviar el pasword aleatorio en el correo
-// Agregar la recuperacion de contrasena agregando el link dinamico
-// verificar que no existan rutas repetidas
-// Completar el flijo completo del auth
-// Hacer el crud completo de User get user/:id /users /user/delete /user/update
-// Crear el controlador de auth
-// Desacoplar las rutas en 3 archivos
-// Paginacion
+// agregar las dos realciones pendientes de las tablas que existan refrescar y migrar =>orlando
+// Revisar que todas las realciones esten OK =>orlando
+// Crear los seeders =>orlando
+// Enviar el token en correo para poder recupar contrasena =>jose
+// Enviar el pasword aleatorio en el correo=>jose
+// Agregar la recuperacion de contrasena agregando el link dinamico =>jose
+// verificar que no existan rutas repetidas =>orlando
+// Completar el flijo completo del auth =>todos para lo ultimo
+// Hacer el crud completo de User get user/:id /users /user/delete /user/update =>paola
+// Crear el controlador de auth =>paola
+// Desacoplar las rutas en 3 archivos => todos a lo ultimo 
+// Paginacion =>sergio
+// asegurar que todo este con ES6 =>sergio
+// variables de entorno=>orlando
