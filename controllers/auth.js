@@ -4,10 +4,15 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const enviarCorreo = require("../middlewares/nodemailer");
 const { Users } = require("../models");
+const roles = require("../utils/roles");
 
 const login = async (request, response) => {
   let { email, password } = request.body;
   let user = await Users.findOne({
+    include: [{
+      model: roles,
+      as:'roles'
+    }],
     where: {
       email: email,
     },
@@ -27,6 +32,7 @@ const login = async (request, response) => {
             email: user.email,
             first_name: user.first_name,
             last_name: user.last_name,
+            roles: user.roles
           },
           process.env.JWT_SECRET,
           { expiresIn: "1hr" }

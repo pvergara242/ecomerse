@@ -51,28 +51,26 @@ ctrl.listAll = async (request, response) => {
 
 // modificar un cupon
 ctrl.update = async (request, response) => {
-  const Coupons = request.params.CouponsId;
+  const CouponsId = request.params.CouponsId;
   const {
-    Sku,
-    name,
-    description,
-    product_status_id,
-    regular_price,
-    discount_price,
-    quantity,
-    texable,
+    Code,
+    Descripcion,
+    active,
+    value,
+    multiple,
+    start_date,
+    end_date,
   } = request.body;
   try {
     let CouponsId = await CouponsId.update(
       {
-        Sku,
-        name,
-        description,
-        product_status_id,
-        regular_price,
-        discount_price,
-        quantity,
-        texable,
+        Code,
+        Descripcion,
+        active,
+        value,
+        multiple,
+        start_date,
+        end_date,
         created_at: new Date(),
         updated_at: new Date(),
       },

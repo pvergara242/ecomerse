@@ -1,10 +1,10 @@
 import { Categories } from "../models/index";
 import { Model } from "sequelize";
 
-const Categories = {};
+const ctrl = {};
 
 // crear una categoria
-Categories.register = async (request, response) => {
+ctrl.register = async (request, response) => {
   let {name,parent_id  } = request.body;
   const Categories = await Categories.create({
     name,
@@ -20,7 +20,7 @@ Categories.register = async (request, response) => {
 };
 
 // ontener varias categorias
-Categories.getCategories = async (request, response) => {
+ctrl.getCategories = async (request, response) => {
   const CategoriesId = request.params.CategoriesId;
   const Categories = await Categories.findOne({
     where: {
@@ -31,13 +31,13 @@ Categories.getCategories = async (request, response) => {
 };
 
 // obtener categorias
-Categories.listAll = async (request, response) => {
+ctrl.listAll = async (request, response) => {
   const Categories = await Categories.findAll();
   response.json({ results: Categories });
 };
 
 // modificar una categoria
-Categories.update= async(request, response) => {
+ctrl.update= async(request, response) => {
   const Categories = request.params.CategoriesId;
   const {
     name,
@@ -56,8 +56,8 @@ Categories.update= async(request, response) => {
               id:CategoriesId
           }
       });
-      const CategoriesId = CategoriesId[1][0].dataValues;
-      response.json(Categories);
+    CategoriesId = CategoriesId[1][0].dataValues;
+      response.json(CategoriesId);
   } catch (error) {
       response
           .status(400)
@@ -66,7 +66,7 @@ Categories.update= async(request, response) => {
 }
 
 // eliminar una categoria 
-Categories.delete = async(request, response) => {
+ctrl.delete = async(request, response) => {
   let CategoriesId = request.params.CategoriesId;
   try {
       let Categories = await Categories.findOne({
@@ -95,4 +95,4 @@ Categories.delete = async(request, response) => {
   }
 }
 
-  export default Categories;
+  export default ctrl;
