@@ -12,6 +12,7 @@ const validateToken = (request, response, next) => {
     try {
       request["token"] = token;
       let decoded = jwt.verify(token, process.env.JWT_SECRET);
+      request['user'] = decoded;
       if (decoded) {
         next();
       }
@@ -26,7 +27,14 @@ const validateToken = (request, response, next) => {
 
 const grantAcces = (action,resource) =>{
   return async (request,response,next)=>{
-    const permission = roles().can(request.user.roles)[action][resource]
+    let permission = null;
+    request.user.roles.forEach(role => {
+     permission = roles().can(request.user.roles)[action][resource]
+     if(permission.granted){
+       return permission;
+     }
+    });
+    
     if(!permission.granted){
       response.status(401).json({
         message:'no tiene permiso para realizar esta accion'
