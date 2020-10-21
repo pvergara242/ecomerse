@@ -1,4 +1,6 @@
+import { request, response } from 'express';
 import jwt from 'jsonwebtoken';
+const roles = require('../utils/roles');
 
 const validateToken = (request, response, next) => {
   //Middleware para validar el token del usuario
@@ -21,6 +23,18 @@ const validateToken = (request, response, next) => {
     response.status(401).json({ message: "El token no ha sido proporcionado" });
   }
 };
+
+const grantAcces = (action,resource) =>{
+  return async (request,response,next)=>{
+    const permission = roles().can(request.user.roles)[action][resource]
+    if(!permission.granted){
+      response.status(401).json({
+        message:'no tiene permiso para realizar esta accion'
+      })
+    }
+    next()
+  }
+}
 
 export default  validateToken
 // module.exports = validateToken;
