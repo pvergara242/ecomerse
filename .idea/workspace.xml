@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="256e977d-cc10-4984-b3af-4f0cf6c61603" name="Default Changelist" comment="" />
+    <list default="true" id="256e977d-cc10-4984-b3af-4f0cf6c61603" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,6 +22,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -32,10 +35,25 @@
       <updated>1601606384603</updated>
       <workItem from="1601606385835" duration="813000" />
       <workItem from="1602129800809" duration="22000" />
+      <workItem from="1603752544540" duration="51000" />
+      <workItem from="1603752607931" duration="108000" />
+      <workItem from="1603760022924" duration="1144000" />
+      <workItem from="1603768661735" duration="50000" />
+      <workItem from="1603768728676" duration="1790000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1207" y="230" width="662" height="745" key="#Vim_Emulation" timestamp="1603769422011">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="1207" y="230" width="662" height="745" key="#Vim_Emulation/0.0.1920.1080@0.0.1920.1080" timestamp="1603769422011" />
+    <state x="192" y="108" width="1536" height="864" key="SettingsEditor" timestamp="1603770519250">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="192" y="108" width="1536" height="864" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1603770519250" />
   </component>
 </project>
